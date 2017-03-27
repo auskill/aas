@@ -1,0 +1,25 @@
+% -----------------------------------
+
+** API files. P-files and Mex files, used to interact with Possum.
+API_PossumUGV2.p         : API file. 
+API_Possum_LowLevel.p   : API file. 
+possumDB.mexw32         : API mex file for Matlab 32 bits
+possumDB.mexw64         : API mex file for Matlab 64 bits
+
+
+% -----------------------------------
+Example code:
+
+ExampleReadIMU.m        : source code example that shows how to read from a IMU sensor.
+ExampleReadLMS200.m     : source code example that shows how to read from a LMS200 laser scanner sensor.
+ExampleReadManySensors.m  : source code example that shows how to read many sensors.
+
+
+//More examples using the API
+FE_Test_lms200_xy_2016.m    : read laser scans and plot pixels, showing also high intensity pixels
+Test_IMU_Scope.m            : read IMU samples and plot GYroZ in an scope.
+Test_Speed_Scope.m          : read speed samples and plot in an scope.
+
+% -----------------------------------
+Jose Guivant - AAS - 2015.
+% -----------------------------------
