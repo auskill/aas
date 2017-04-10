@@ -36,20 +36,29 @@ for i=3:3:dataL.N,
         for i=1:length(startOOIs(1,:))
             txt = int2str(i);
             handle(i) = text(startOOIs(1,i),startOOIs(2,i), txt);
+            set(handle(i), 'Visible', 'off');
         end
     end
+    
+
     OOIs  = ProcessScan(scan_i);
     index = find(myPosition(:,4) <= times(i),1,'last');
     detectedOOIs = correctOOIs(OOIs, Handles.H1, myPosition(index,:));
-    for i=1:length(detectedOOIs(1,:))
-        distance = sqrt((startOOIs(1,:) - detectedOOIs(1,i)).^2 + (startOOIs(2,:) - detectedOOIs(2,i)).^2);
-        index = find(distance <= 0.5,1);
-        if index > 0
-            set(handle(index),'xdata',detectedOOIs(1,i),'ydata',detectedOOIs(2,i));
+    if ~isempty(detectedOOIs)
+        for i=1:length(detectedOOIs(1,:))
+            distance = sqrt((startOOIs(1,:) - detectedOOIs(1,i)).^2 + (startOOIs(2,:) - detectedOOIs(2,i)).^2);
+            index = find(distance <= 0.5,1);
+            if index > 0
+                pos = [detectedOOIs(1,i) detectedOOIs(2,i) 0];
+                set(handle(index),'Position',pos,'Visible', 'on');
+            end
         end
     end
     
     pause(0.001);
+    for i=1:length(handle)
+        set(handle(i), 'Visible', 'off');
+    end
 end;
 disp('All scans processed');
 
